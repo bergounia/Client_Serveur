@@ -1,17 +1,16 @@
-import java.io.*;
 import java.net.*;
- 
+
 /**
  * Classe correspondant à un serveur UDP
  * @author Cyril Rabat
  * @version 27/09/2013
  */
 public class ServeurUDP {
- 
+
     public static void main(String[] args) {
 	byte[] tampon = new byte[1024];
 	DatagramSocket socket = null;
- 
+
 	// Creation du socket
 	try {	    
 	    socket = new DatagramSocket(1025);
@@ -19,10 +18,10 @@ public class ServeurUDP {
 	    System.err.println("Erreur lors de la creation du socket");
 	    System.exit(-1);
 	}
- 
+
 	// Creation du message
 	DatagramPacket msg = new DatagramPacket(tampon, tampon.length);
- 
+
 	// Lecture du message du client
 	try {
 	    socket.receive(msg);
@@ -32,7 +31,7 @@ public class ServeurUDP {
 	    System.err.println("Erreur lors de la reception du message");
 	    System.exit(-1);
 	}
- 
+
 	// Fermeture du socket
 	try {
 	    socket.close();
@@ -40,5 +39,5 @@ public class ServeurUDP {
 	    System.err.println("Erreur de la fermeture du socket");
 	}
     }
- 
+
 }

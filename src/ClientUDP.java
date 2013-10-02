@@ -1,4 +1,3 @@
-import java.io.*;
 import java.net.*;
 
 /**
@@ -9,7 +8,7 @@ import java.net.*;
 public class ClientUDP {
 
     public static void main(String[] args) {
-	String message = "Chalut !";
+	String message = "Bonjour";
 	byte[] tampon = message.getBytes();
 	DatagramSocket socket = null;
 
