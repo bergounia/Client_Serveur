@@ -1,6 +1,5 @@
 package Synchronisation;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,19 +16,19 @@ public class Dom {
 		
 		Element id= new Element("id");
 		utilisateur.addContent(id);
-		id.setText(u.id);
+		id.setText(u.getId());
 		
 		Element nom= new Element("nom");
 		utilisateur.addContent(nom);
-		nom.setText(u.nom);
+		nom.setText(u.getNom());
 		
 		Element prenom= new Element("prenom");
 		utilisateur.addContent(prenom);
-		prenom.setText(u.prenom);
+		prenom.setText(u.getPrenom());
 		
 		Element mdp= new Element("mdp");
 		utilisateur.addContent(mdp);
-		mdp.setText(u.mdp);
+		mdp.setText(u.getMdp());
 	}
 	
 	public void supprimerUtilisateur(Utilisateur u)
@@ -44,7 +43,7 @@ public class Dom {
 		while(!b)
 		{
 			Element courant = (Element)it.next();
-			if(!u.id.equals(courant.getChild("id").getText()))
+			if(!u.getId().equals(courant.getChild("id").getText()))
 				i++;
 			else
 				b= true;
