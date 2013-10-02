@@ -14,9 +14,9 @@ public class ClientTCP {
 	// Creation de la socket
 	Socket socket = null;
 	try {
-	    socket = new Socket("localhost", numeroPort);
+	    socket = new Socket("172.19.131.40", numeroPort);
 	} catch(Exception e) {
-	    System.err.println("Creation socket impossible");
+	    System.err.println("Creation socket impossible"+e);
 	    System.exit(-1);
 	}
 	
