@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <utilisateurs>
 	<utilisateur>
-		<username></username>
-		<username></username>
+	    <id></id>
 		<nom></nom>
 		<prenom></prenom>
+		<mdp></mdp>
 	</utilisateur>
 <utilisateurs>
