@@ -11,7 +11,7 @@ public class Utilisateur {
 	private String prenom;
 	private static int incr;
 	
-	public Utilisateur(String umdp, String unom, String uprenom) {
+	public Utilisateur(String unom, String uprenom, String umdp) {
 		
 		this.mdp = encode(umdp);
 		this.nom = unom;

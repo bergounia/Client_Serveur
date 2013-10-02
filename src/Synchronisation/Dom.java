@@ -1,15 +1,20 @@
 package Synchronisation;
 
+import java.io.FileOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 public class Dom {
 	
-	private Element racine= new Element("utilisateurs");
+	private static Element racine= new Element("utilisateurs");
+	public static org.jdom2.Document document = new Document(racine);
 
-	public void ajoutUtilisateur(Utilisateur u)
+	public static void ajoutUtilisateur(Utilisateur u)
 	{
 		Element utilisateur= new Element("utilisateur");
 		racine.addContent(utilisateur);
@@ -31,7 +36,7 @@ public class Dom {
 		mdp.setText(u.getMdp());
 	}
 	
-	public void supprimerUtilisateur(Utilisateur u)
+	public static void supprimerUtilisateur(Utilisateur u)
 	{
 		int i=0;
 		boolean b= false;
@@ -50,5 +55,45 @@ public class Dom {
 		}
 		
 		racine.removeContent(i);
+	}
+	
+	public static void affiche()
+	{
+		try
+		{
+			//On utilise ici un affichage classique avec getPrettyFormat()
+			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+			sortie.output(document, System.out);
+		}
+		catch (java.io.IOException e){}
+	}
+	
+	public static void enregistre(String fichier)
+	{
+		try
+		{
+			//On utilise ici un affichage classique avec getPrettyFormat()
+			XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+			//Remarquez qu'il suffit simplement de créer une instance de FileOutputStream
+			//avec en argument le nom du fichier pour effectuer la sérialisation.
+			sortie.output(document, new FileOutputStream(fichier));
+		}
+		catch (java.io.IOException e){}
+	}
+	
+	public static void main(String[] args)
+	{
+		Utilisateur u1= new Utilisateur("kamin","ben", "ben002");
+		Utilisateur u2= new Utilisateur("bride", "aymeric", "aym001");
+		Utilisateur u3= new Utilisateur("rabat", "cyril", "cyril001");
+		
+		ajoutUtilisateur(u1);
+		ajoutUtilisateur(u2);
+		ajoutUtilisateur(u3);
+		
+		supprimerUtilisateur(u2);
+		
+		affiche();
+		enregistre("utilisateurs.xml");
 	}
 }

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <utilisateurs>
-	<utilisateur>
-	    <id></id>
-		<nom></nom>
-		<prenom></prenom>
-		<mdp></mdp>
-	</utilisateur>
-<utilisateurs>
+  <utilisateur>
+    <id>kamben0</id>
+    <nom>kamin</nom>
+    <prenom>ben</prenom>
+    <mdp>f8917be41ade800dad5f72ccdfdf0f80</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>rabcyr2</id>
+    <nom>rabat</nom>
+    <prenom>cyril</prenom>
+    <mdp>16e31ff61ed473e903b4757dbb4bb8f1</mdp>
+  </utilisateur>
+</utilisateurs>
