@@ -14,7 +14,7 @@ public class ClientTCP {
 	// Creation de la socket
 	Socket socket = null;
 	try {
-	    socket = new Socket("localhost", numeroPort);
+	    socket = new Socket("192.168.43.51", numeroPort);
 	} catch(Exception e) {
 	    System.err.println("Creation socket impossible");
 	    System.exit(-1);
@@ -32,7 +32,7 @@ public class ClientTCP {
 	}
 	
 	// Envoi de 'Bonjour'
-	String message = "Bonjour";
+	String message = "Bonjour2";
 	System.out.println("Envoi: " + message);
 	try {
 	    output.println(message);

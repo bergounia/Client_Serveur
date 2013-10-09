@@ -35,7 +35,7 @@ public class Dom {
 		mdp.setText(u.getMdp());
 	}
 	
-	public static void supprimerUtilisateur(Utilisateur u)
+	public static void supprimerUtilisateur(String id)
 	{
 		int i=0;
 		boolean b= false;
@@ -47,7 +47,7 @@ public class Dom {
 		while(!b)
 		{
 			Element courant = (Element)it.next();
-			if(!u.getId().equals(courant.getChild("id").getText()))
+			if(!id.equals(courant.getChild("id").getText()))
 				i++;
 			else
 				b= true;
@@ -68,7 +68,7 @@ public class Dom {
 		{
 			Element courant = (Element)it.next();
 			
-			if(u.getId().equals(courant.getChild("id").getText()))
+			if(u.getId().equals(courant.getChild("id").getText()) & u.getMdp().equals(courant.getChild("mdp").getText()) )
 				b= true;
 		}
 		
@@ -110,7 +110,7 @@ public class Dom {
 		ajouterUtilisateur(u2);
 		ajouterUtilisateur(u3);
 		
-		supprimerUtilisateur(u2);
+		//supprimerUtilisateur(u2);
 		
 		//affiche();
 		enregistre("utilisateurs.xml");
