@@ -67,56 +67,68 @@ public class ClientUDP {
 		utilisateurAjoute.addContent(mdp);
 	}
 	
-    public static void main(String[] args) throws IOException {
-    
-    //suppression("kamben0", "ben002", "rabcyr2");
-    ajout("kamben0", "ben002", "Vite", "Benchamin","benchamin");
-    
-    XMLOutputter sortie = new XMLOutputter(Format.getCompactFormat());
-    ByteArrayOutputStream b = new ByteArrayOutputStream();
-    
-    sortie.output(document,b);
-    
-	byte[] tampon = b.toByteArray();
-	DatagramSocket socket = null;
+	public static void envoyer() throws IOException
+	{
+		XMLOutputter sortie = new XMLOutputter(Format.getCompactFormat());
+	    ByteArrayOutputStream b = new ByteArrayOutputStream();
+	    
+	    sortie.output(document,b);
+	    
+		byte[] tampon = b.toByteArray();
+		DatagramSocket socket = null;
 
-	// Creation du socket
-	try {
-	    socket = new DatagramSocket();
-	} catch(Exception e) {
-	    System.err.println("Erreur lors de la creation du socket");
-	    System.exit(-1);
+		// Creation du socket
+		try {
+		    socket = new DatagramSocket();
+		} catch(Exception e) {
+		    System.err.println("Erreur lors de la creation du socket");
+		    System.exit(-1);
+		}
+
+		// Creation du message
+		DatagramPacket msg = null;
+		try {
+		    InetAddress adresse = InetAddress.getByName("192.168.43.9");
+		    msg = new DatagramPacket(tampon,
+					     tampon.length,
+					     adresse,
+					     2025);
+
+		} catch(Exception e) {
+		    System.err.println("Erreur lors de la creation du message");
+		    System.exit(-1);
+		}
+
+		// Envoi du message
+		try {
+		    socket.send(msg);
+		} catch(Exception e) {
+		    System.err.println("Erreur lors de l'envoi du message");
+		    System.exit(-1);
+		}
+
+		// Fermeture du socket
+		try {
+		    socket.close();
+		} catch(Exception e) {
+		    System.err.println("Erreur lors de la fermeture du socket");
+		    System.exit(-1);
+		}
 	}
-
-	// Creation du message
-	DatagramPacket msg = null;
-	try {
-	    InetAddress adresse = InetAddress.getByName("192.168.43.9");
-	    msg = new DatagramPacket(tampon,
-				     tampon.length,
-				     adresse,
-				     2025);
-
-	} catch(Exception e) {
-	    System.err.println("Erreur lors de la creation du message");
-	    System.exit(-1);
+	
+	public static void console()
+	{
+		System.out.println("Que voulez-vous faire ?");
+		System.out.println("1) Ajouter un utilisateur");
+		System.out.println("2) Supprimer un utilisateur");
 	}
-
-	// Envoi du message
-	try {
-	    socket.send(msg);
-	} catch(Exception e) {
-	    System.err.println("Erreur lors de l'envoi du message");
-	    System.exit(-1);
-	}
-
-	// Fermeture du socket
-	try {
-	    socket.close();
-	} catch(Exception e) {
-	    System.err.println("Erreur lors de la fermeture du socket");
-	    System.exit(-1);
-	}
+	
+    public static void main(String[] args) throws IOException{
+    
+	    suppression("kamben0", "ben002", "rabcyr2");
+	    //ajout("kamben0", "ben002", "Vite", "Benchamin","benchamin");
+	    
+	    //Envoyer du paquet
+	    envoyer();
     }
-
 }
