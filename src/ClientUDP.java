@@ -18,11 +18,8 @@ public class ClientUDP {
 	private static Element message= new Element("message");
 	public static org.jdom2.Document document = new Document(message);
 	
-	public static void suppression(String identifiant, String motDePasse)
-	{
-		Attribute type= new Attribute("type", "suppression");
-		message.setAttribute(type);
-		
+	public static void connexion(String identifiant, String motDePasse)
+	{	
 		Element utilisateur= new Element("utilisateur");
 		message.addContent(utilisateur);
 		
@@ -35,9 +32,20 @@ public class ClientUDP {
 		utilisateur.addContent(mdp);
 	}
 	
+	public static void suppression(String idMoi, String mdpMoi, String persASupp)
+	{
+		connexion(idMoi,mdpMoi);
+		
+		Attribute type= new Attribute("type", "suppression");
+		message.setAttribute(type);
+		
+		Element idASupp= new Element("idASupp");
+		message.addContent(idASupp);
+	}
+	
     public static void main(String[] args) throws IOException {
     
-    suppression("kamben0", "ben002");
+    suppression("kamben0", "ben002", "rabcyr2");
     
     XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
     ByteArrayOutputStream b = new ByteArrayOutputStream();
