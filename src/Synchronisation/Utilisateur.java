@@ -61,7 +61,7 @@ public class Utilisateur {
 				+ ", prenom=" + prenom + "]";
 	}
 	
-	private static String encode(String password)
+	public static String encode(String password)
     {
         byte[] uniqueKey = password.getBytes();
         byte[] hash      = null;
@@ -94,10 +94,5 @@ public class Utilisateur {
 		
 		Utilisateur U = new Utilisateur("Kaminski","Benjamin");
 		System.out.println(U);
-		
-		
 	}
-	
-	
-
 }

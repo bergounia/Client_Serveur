@@ -1,4 +1,12 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.*;
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+import Synchronisation.Utilisateur;
 
 /**
  * Classe correspondant à un client UDP
@@ -7,9 +15,36 @@ import java.net.*;
  */
 public class ClientUDP {
 
-    public static void main(String[] args) {
-	String message = "Bonjour";
-	byte[] tampon = message.getBytes();
+	private static Element message= new Element("message");
+	public static org.jdom2.Document document = new Document(message);
+	
+	public static void suppression(String identifiant, String motDePasse)
+	{
+		Attribute type= new Attribute("type", "suppression");
+		message.setAttribute(type);
+		
+		Element utilisateur= new Element("utilisateur");
+		message.addContent(utilisateur);
+		
+		Element id= new Element("id");
+		id.setText(identifiant);
+		utilisateur.addContent(id);
+		
+		Element mdp= new Element("mdp");
+		mdp.setText(Utilisateur.encode(motDePasse));
+		utilisateur.addContent(mdp);
+	}
+	
+    public static void main(String[] args) throws IOException {
+    
+    suppression("kamben0", "ben002");
+    
+    XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+    ByteArrayOutputStream b = new ByteArrayOutputStream();
+    
+    sortie.output(document,b);
+    
+	byte[] tampon = b.toByteArray();
 	DatagramSocket socket = null;
 
 	// Creation du socket

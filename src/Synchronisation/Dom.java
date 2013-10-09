@@ -115,7 +115,7 @@ public class Dom {
 		//affiche();
 		enregistre("utilisateurs.xml");
 		
-		//Test de la methde chercherUtilisateur(Utilisateur u)
+		//Test de la methode chercherUtilisateur(Utilisateur u)
 		//System.out.println(chercherUtilisateur(u2));
 	}
 }
