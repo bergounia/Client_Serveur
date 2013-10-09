@@ -40,14 +40,39 @@ public class ClientUDP {
 		message.setAttribute(type);
 		
 		Element idASupp= new Element("idASupp");
+		idASupp.setText(persASupp);
 		message.addContent(idASupp);
+	}
+	
+	public static void ajout(String idMoi, String mdpMoi, String nomPersAjout, String prenomPersAjout, String mdpPersAjout)
+	{
+		connexion(idMoi,mdpMoi);
+		
+		Attribute type= new Attribute("type", "ajout");
+		message.setAttribute(type);
+		
+		Element utilisateurAjoute= new Element("utilisateurAjoute");
+		message.addContent(utilisateurAjoute);
+		
+		Element nom= new Element("nom");
+		nom.setText(nomPersAjout);
+		utilisateurAjoute.addContent(nom);
+		
+		Element prenom= new Element("prenom");
+		prenom.setText(prenomPersAjout);
+		utilisateurAjoute.addContent(prenom);
+		
+		Element mdp= new Element("mdp");
+		mdp.setText(Utilisateur.encode(mdpPersAjout));
+		utilisateurAjoute.addContent(mdp);
 	}
 	
     public static void main(String[] args) throws IOException {
     
-    suppression("kamben0", "ben002", "rabcyr2");
+    //suppression("kamben0", "ben002", "rabcyr2");
+    ajout("kamben0", "ben002", "Vite", "Benchamin","benchamin");
     
-    XMLOutputter sortie = new XMLOutputter(Format.getPrettyFormat());
+    XMLOutputter sortie = new XMLOutputter(Format.getCompactFormat());
     ByteArrayOutputStream b = new ByteArrayOutputStream();
     
     sortie.output(document,b);
@@ -66,11 +91,11 @@ public class ClientUDP {
 	// Creation du message
 	DatagramPacket msg = null;
 	try {
-	    InetAddress adresse = InetAddress.getByName(null);
+	    InetAddress adresse = InetAddress.getByName("192.168.43.9");
 	    msg = new DatagramPacket(tampon,
 				     tampon.length,
 				     adresse,
-				     1025);
+				     2025);
 
 	} catch(Exception e) {
 	    System.err.println("Erreur lors de la creation du message");
