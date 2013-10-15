@@ -1,14 +1,9 @@
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.ObjectInputStream;
 import java.net.*;
-
 import Synchronisation.Dom;
 import Synchronisation.Utilisateur;
-
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.output.*;
 
 
 /**

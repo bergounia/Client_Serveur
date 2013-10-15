@@ -16,7 +16,7 @@ public class Utilisateur {
 		this.mdp = encode(umdp);
 		this.nom = unom;
 		this.prenom = uprenom;
-		this.id=unom.substring(0, 3) + uprenom.substring(0, 3) + this.incr++;
+		this.id=unom.substring(0, 3) + uprenom.substring(0, 3) + Utilisateur.incr++;
 	}
 	
 	public Utilisateur(String unom, String uprenom) {
@@ -24,7 +24,7 @@ public class Utilisateur {
 		this.mdp = encode("P@ssw0rd");
 		this.nom = unom;
 		this.prenom = uprenom;
-		this.id=unom.substring(0, 3) + uprenom.substring(0, 3) + this.incr++;
+		this.id=unom.substring(0, 3) + uprenom.substring(0, 3) + Utilisateur.incr++;
 	}
 
 	public String getId() {
@@ -54,7 +54,7 @@ public class Utilisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Utilisateur [id=" + id + ", mdp=" + mdp + ", nom=" + nom
